@@ -1,1012 +1,134 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-<!-- Trigger rebuild -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Rete Magna – Agenzia no-code e AI nel Veneto. Siti web professionali da 500€, pronti in 7 giorni. Soluzioni per PMI e startup italiane.">
-<meta name="keywords" content="no-code siti web, AI business Italia, profitti social, Webflow Italia, Framer agenzia, automazione marketing AI, TikTok vendite, e-commerce no-code">
-<meta property="og:title" content="Rete Magna – Siti No-Code & AI per Business Italiani">
-<meta property="og:description" content="Lancia il tuo business digitale in 7 giorni. Prezzi da 500€, zero watermark, integrazione TikTok/Instagram.">
-<meta property="og:type" content="website">
-<title>Rete Magna | Siti No-Code & Soluzioni AI per Business Italiani</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --blue-deep: #0A2342;
-    --blue-mid: #1A4A7A;
-    --blue-accent: #1E7FD8;
-    --green-accent: #00C896;
-    --green-light: #E0FFF5;
-    --off-white: #F7F9FC;
-    --text-dark: #0D1B2A;
-    --text-mid: #3A4A5C;
-    --text-light: #6B7C93;
-    --border: #D8E4F0;
-    --white: #FFFFFF;
-    --card-bg: #FFFFFF;
-    --section-alt: #F0F6FF;
-    --gradient-hero: linear-gradient(135deg, #0A2342 0%, #1A4A7A 50%, #0E3A5E 100%);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-dark);
-    background: var(--white);
-    line-height: 1.7;
-    font-size: 16px;
-    overflow-x: hidden;
-  }
-
-  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.15; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    background: rgba(10,35,66,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.4rem;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-  }
-  .nav-logo span { color: var(--green-accent); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: rgba(255,255,255,0.75); text-decoration: none;
-    font-size: 0.9rem; font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--green-accent); }
-  .nav-cta {
-    background: var(--green-accent); color: var(--blue-deep) !important;
-    padding: 0.5rem 1.25rem; border-radius: 6px;
-    font-weight: 600 !important; font-size: 0.85rem !important;
-    transition: opacity 0.2s !important;
-  }
-  .nav-cta:hover { opacity: 0.85; }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: 0.3s; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--gradient-hero);
-    display: flex; align-items: center;
-    position: relative; overflow: hidden;
-    padding: 8rem 2rem 4rem;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(0,200,150,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(30,127,216,0.15) 0%, transparent 50%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0; opacity: 0.04;
-    background-image: linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-content { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,200,150,0.15); border: 1px solid rgba(0,200,150,0.3);
-    color: var(--green-accent); padding: 6px 16px; border-radius: 100px;
-    font-size: 0.82rem; font-weight: 500; margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-badge::before { content: '●'; font-size: 8px; }
-  .hero h1 {
-    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800;
-    color: var(--white); margin-bottom: 1.25rem;
-    animation: fadeUp 0.6s ease 0.1s both;
-  }
-  .hero h1 span { color: var(--green-accent); }
-  .hero-sub {
-    font-size: 1.2rem; color: rgba(255,255,255,0.72);
-    max-width: 600px; margin-bottom: 2.5rem; font-weight: 300;
-    animation: fadeUp 0.6s ease 0.2s both;
-  }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
-  .btn-primary {
-    background: var(--green-accent); color: var(--blue-deep);
-    padding: 0.9rem 2rem; border-radius: 8px;
-    font-weight: 700; font-size: 1rem; text-decoration: none;
-    font-family: 'Syne', sans-serif;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-block;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,200,150,0.35); }
-  .btn-outline {
-    border: 1.5px solid rgba(255,255,255,0.35); color: white;
-    padding: 0.9rem 2rem; border-radius: 8px;
-    font-weight: 500; font-size: 1rem; text-decoration: none;
-    display: inline-block; transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--green-accent); background: rgba(0,200,150,0.08); }
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem;
-    animation: fadeUp 0.6s ease 0.4s both; flex-wrap: wrap;
-  }
-  .stat { color: white; }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--green-accent); }
-  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SECTIONS ── */
-  section { padding: 6rem 2rem; }
-  .section-alt { background: var(--section-alt); }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-tag {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--green-accent); margin-bottom: 0.75rem;
-  }
-  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; }
-  .section-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 580px; }
-
-  /* ── CHI SIAMO ── */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
-  .about-image-wrap {
-    position: relative;
-  }
-  .about-image-box {
-    width: 100%; aspect-ratio: 4/5;
-    background: var(--gradient-hero);
-    border-radius: 20px; overflow: hidden;
-    display: flex; align-items: flex-end;
-  }
-  .about-image-box .founder-visual {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
-    gap: 1rem;
-    background: linear-gradient(160deg, #0A2342, #1E7FD8);
-    padding: 2rem;
-    text-align: center;
-  }
-  .founder-initials {
-    width: 100px; height: 100px; border-radius: 50%;
-    background: rgba(0,200,150,0.2); border: 3px solid var(--green-accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--green-accent);
-  }
-  .founder-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; color: white; }
-  .founder-role { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
-  .about-badge {
-    position: absolute; bottom: -1.5rem; right: -1.5rem;
-    background: var(--green-accent); color: var(--blue-deep);
-    padding: 1rem 1.5rem; border-radius: 12px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem;
-    box-shadow: 0 8px 24px rgba(0,200,150,0.3);
-  }
-  .about-badge small { display: block; font-size: 0.7rem; font-weight: 500; margin-bottom: 2px; }
-  .about-text h2 { margin-bottom: 1.25rem; }
-  .about-text p { color: var(--text-mid); margin-bottom: 1rem; }
-  .about-values { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
-  .about-value {
-    display: flex; align-items: flex-start; gap: 12px;
-    background: var(--green-light); border-radius: 10px; padding: 0.85rem 1rem;
-  }
-  .about-value-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
-  .about-value-text { font-size: 0.92rem; color: var(--text-mid); }
-  .about-value-text strong { color: var(--text-dark); display: block; font-size: 0.85rem; margin-bottom: 2px; }
-
-  /* ── SERVIZI ── */
-  .services-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
-  .pricing-table { width: 100%; border-collapse: collapse; }
-  .pricing-table th {
-    background: var(--blue-deep); color: white;
-    font-family: 'Syne', sans-serif; font-weight: 600;
-    padding: 1rem 1.25rem; text-align: left; font-size: 0.9rem;
-  }
-  .pricing-table th:first-child { border-radius: 10px 0 0 0; }
-  .pricing-table th:last-child { border-radius: 0 10px 0 0; }
-  .pricing-table td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
-  .pricing-table tr:last-child td { border-bottom: none; }
-  .pricing-table tr:hover td { background: var(--section-alt); }
-  .pricing-table tr.featured td { background: #EFF8FF; }
-  .pkg-name { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text-dark); font-size: 1rem; }
-  .pkg-price { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--blue-accent); font-size: 1.2rem; }
-  .pkg-features { color: var(--text-mid); line-height: 1.5; font-size: 0.88rem; }
-  .pkg-badge {
-    display: inline-block; background: var(--green-accent); color: var(--blue-deep);
-    font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 100px;
-    margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px;
-  }
-  .check { color: var(--green-accent); font-weight: 700; }
-
-  /* ── PORTFOLIO ── */
-  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .portfolio-card {
-    border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--border);
-    transition: transform 0.25s, box-shadow 0.25s;
-    background: var(--card-bg);
-  }
-  .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(10,35,66,0.12); }
-  .portfolio-mockup {
-    height: 200px; display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .pm-1 { background: linear-gradient(135deg, #0A2342, #1E7FD8); }
-  .pm-2 { background: linear-gradient(135deg, #0D3B2E, #00C896); }
-  .pm-3 { background: linear-gradient(135deg, #2D1A4A, #7B4FD8); }
-  .mockup-screen {
-    width: 75%; height: 80%; background: rgba(255,255,255,0.95);
-    border-radius: 8px; padding: 12px;
-    display: flex; flex-direction: column; gap: 6px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  }
-  .ms-bar { height: 6px; background: var(--border); border-radius: 4px; }
-  .ms-bar.accent { background: var(--green-accent); width: 60%; }
-  .ms-bar.mid { width: 80%; }
-  .ms-row { display: flex; gap: 6px; margin-top: 4px; }
-  .ms-block { flex: 1; height: 30px; background: var(--section-alt); border-radius: 4px; }
-  .ms-block.accent { background: linear-gradient(90deg, #0A2342, #1E7FD8); }
-  .ms-block.green { background: var(--green-accent); }
-  .portfolio-info { padding: 1.25rem; }
-  .portfolio-cat { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 0.35rem; }
-  .portfolio-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 0.4rem; }
-  .portfolio-desc { font-size: 0.85rem; color: var(--text-mid); }
-  .portfolio-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
-  .tag {
-    background: var(--section-alt); color: var(--text-mid);
-    font-size: 0.72rem; padding: 3px 10px; border-radius: 100px;
-    border: 1px solid var(--border);
-  }
-
-  /* ── COME FUNZIONA ── */
-  .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; margin-top: 3.5rem; position: relative; }
-  .steps-grid::before {
-    content: '';
-    position: absolute; top: 28px; left: 10%; right: 10%;
-    height: 2px; background: linear-gradient(90deg, var(--green-accent), var(--blue-accent));
-    z-index: 0;
-  }
-  .step-card { text-align: center; position: relative; z-index: 1; }
-  .step-num {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--blue-deep); color: white;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1rem; border: 3px solid var(--green-accent);
-  }
-  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text-dark); }
-  .step-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
-
-  /* ── TESTIMONIANZE ── */
-  .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .review-card {
-    background: var(--card-bg); border-radius: 16px;
-    border: 1px solid var(--border); padding: 1.75rem;
-    transition: box-shadow 0.2s;
-  }
-  .review-card:hover { box-shadow: 0 8px 32px rgba(10,35,66,0.08); }
-  .review-stars { color: #F5A623; font-size: 1.1rem; margin-bottom: 0.85rem; letter-spacing: 2px; }
-  .review-text { color: var(--text-mid); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
-  .reviewer { display: flex; align-items: center; gap: 12px; }
-  .reviewer-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-  .av-1 { background: #EFF8FF; color: var(--blue-accent); }
-  .av-2 { background: #E0FFF5; color: #00A87A; }
-  .av-3 { background: #FFF3E0; color: #E67E00; }
-  .av-4 { background: #F3E8FF; color: #7B4FD8; }
-  .reviewer-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text-dark); }
-  .reviewer-role { font-size: 0.78rem; color: var(--text-light); }
-
-  /* ── BLOG ── */
-  .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-  .blog-card {
-    border-radius: 16px; overflow: hidden; border: 1px solid var(--border);
-    background: var(--card-bg); transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(10,35,66,0.1); }
-  .blog-thumb { height: 180px; }
-  .bt-1 { background: linear-gradient(135deg, #0A2342 0%, #1E7FD8 100%); }
-  .bt-2 { background: linear-gradient(135deg, #0D3B2E 0%, #00C896 100%); }
-  .bt-3 { background: linear-gradient(135deg, #1A0A4A 0%, #7B4FD8 100%); }
-  .blog-thumb-inner { height: 100%; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
-  .blog-thumb-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: rgba(255,255,255,0.9); text-align: center; line-height: 1.25; }
-  .blog-body { padding: 1.25rem; }
-  .blog-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-accent); margin-bottom: 0.4rem; }
-  .blog-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.97rem; color: var(--text-dark); margin-bottom: 0.4rem; line-height: 1.35; }
-  .blog-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.55; }
-  .blog-meta { font-size: 0.75rem; color: var(--text-light); margin-top: 0.75rem; }
-
-  /* ── CTA SECTION ── */
-  .cta-section {
-    background: var(--gradient-hero); padding: 6rem 2rem;
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .cta-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(0,200,150,0.15) 0%, transparent 60%);
-  }
-  .cta-section h2 { color: white; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; margin-bottom: 1rem; position: relative; }
-  .cta-section p { color: rgba(255,255,255,0.65); font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
-  .cta-form { display: flex; gap: 0.75rem; max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center; position: relative; }
-  .cta-input {
-    flex: 1; min-width: 220px; padding: 0.85rem 1.25rem;
-    border: 1.5px solid rgba(255,255,255,0.2); border-radius: 8px;
-    background: rgba(255,255,255,0.08); color: white;
-    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
-    outline: none; transition: border-color 0.2s;
-  }
-  .cta-input::placeholder { color: rgba(255,255,255,0.4); }
-  .cta-input:focus { border-color: var(--green-accent); }
-  .cta-submit {
-    background: var(--green-accent); color: var(--blue-deep);
-    padding: 0.85rem 1.75rem; border: none; border-radius: 8px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
-    cursor: pointer; transition: opacity 0.2s, transform 0.2s;
-    white-space: nowrap;
-  }
-  .cta-submit:hover { opacity: 0.88; transform: translateY(-1px); }
-  .form-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.75rem; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--blue-deep); color: rgba(255,255,255,0.7);
-    padding: 4rem 2rem 2rem;
-  }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
-  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: white; margin-bottom: 0.75rem; }
-  .footer-logo span { color: var(--green-accent); }
-  .footer-about { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
-  .footer-socials { display: flex; gap: 0.75rem; }
-  .social-btn {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 700;
-    transition: background 0.2s, color 0.2s;
-  }
-  .social-btn:hover { background: var(--green-accent); color: var(--blue-deep); border-color: transparent; }
-  .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: white; margin-bottom: 1rem; }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-  .footer-col ul li a:hover { color: var(--green-accent); }
-  .contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.75rem; font-size: 0.85rem; }
-  .contact-item .ci-icon { width: 20px; flex-shrink: 0; color: var(--green-accent); margin-top: 2px; }
-  .contact-item a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-  .contact-item a:hover { color: var(--green-accent); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 1.5rem; max-width: 1100px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
-    font-size: 0.78rem; color: rgba(255,255,255,0.35); gap: 1rem;
-  }
-  .footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; margin-left: 1rem; }
-  .footer-legal a:hover { color: var(--green-accent); }
-
-  /* ── MODAL FORM ── */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(10,35,66,0.65); backdrop-filter: blur(6px);
-    display: none; align-items: center; justify-content: center; padding: 1rem;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: white; border-radius: 20px; padding: 2.5rem;
-    width: 100%; max-width: 480px; position: relative;
-    animation: modalIn 0.3s ease;
-  }
-  @keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-  .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    background: var(--section-alt); border: none; border-radius: 50%;
-    width: 32px; height: 32px; cursor: pointer; font-size: 1.1rem;
-    color: var(--text-mid); display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-  }
-  .modal-close:hover { background: var(--border); }
-  .modal h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.4rem; }
-  .modal-sub { color: var(--text-mid); font-size: 0.9rem; margin-bottom: 1.5rem; }
-  .form-group { margin-bottom: 1rem; }
-  .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--text-dark); margin-bottom: 5px; }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 0.7rem 1rem;
-    border: 1.5px solid var(--border); border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text-dark);
-    outline: none; transition: border-color 0.2s; background: var(--off-white);
-    resize: vertical;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue-accent); background: white; }
-  .form-submit {
-    width: 100%; padding: 0.9rem; background: var(--blue-deep);
-    color: white; border: none; border-radius: 8px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-    cursor: pointer; transition: background 0.2s, transform 0.2s;
-  }
-  .form-submit:hover { background: var(--blue-mid); transform: translateY(-1px); }
-  .form-success { text-align: center; padding: 1.5rem 0; }
-  .form-success .success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-  .form-success h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
-  .form-success p { color: var(--text-mid); font-size: 0.9rem; }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .blog-grid { grid-template-columns: 1fr 1fr; }
-    .blog-grid .blog-card:first-child { grid-column: 1 / -1; }
-    .blog-card .blog-thumb { height: 160px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .steps-grid { grid-template-columns: repeat(3, 1fr); }
-    .steps-grid::before { display: none; }
-    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 768px) {
-    .nav-links { display: none; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,35,66,0.98); padding: 1.5rem; gap: 1rem; }
-    .nav-links.open { display: flex; }
-    .hamburger { display: flex; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-badge { right: 0; }
-    .portfolio-grid { grid-template-columns: 1fr; }
-    .reviews-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-stats { gap: 2rem; }
-    .blog-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; }
-    .pricing-table { font-size: 0.82rem; }
-    .pricing-table th, .pricing-table td { padding: 0.75rem; }
-    section { padding: 4rem 1.25rem; }
-  }
-  @media (max-width: 480px) {
-    .steps-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 2.4rem; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rete Magna</title>
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        /* Navigation Styles */
+        nav { background: #333; color: #fff; padding: 1rem; } 
+        nav ul { list-style: none; display: flex; }
+        nav ul li { margin: 0 1rem; }
+        nav ul li a { color: #fff; text-decoration: none; }
+        /* Hero Section */
+        .hero { background: url('hero.jpg') no-repeat center center/cover; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        /* Responsive CSS */
+        @media (max-width: 768px) {
+            .hero { height: auto; padding: 2rem; }
+        }
+    </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Rete<span>Magna</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#chi-siamo">Chi siamo</a></li>
-    <li><a href="#servizi">Servizi</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#come-funziona">Come funziona</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contatto" class="nav-cta" onclick="event.preventDefault();openModal()">Consulenza Gratis</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </button>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Agenzia No-Code &amp; AI · Veneto, Italia</div>
-    <h1>Il Tuo Business Online<br><span>Pronto in 7 Giorni.</span></h1>
-    <p class="hero-sub">Siti web professionali, automazione AI e strategie social per PMI e startup italiane. Senza codice. Senza sprechi. Senza watermark.</p>
-    <div class="hero-btns">
-      <a href="#contatto" class="btn-primary" onclick="event.preventDefault();openModal()">Inizia Gratis →</a>
-      <a href="#servizi" class="btn-outline">Scopri i Servizi</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Giorni di consegna</div></div>
-      <div class="stat"><div class="stat-num">500€</div><div class="stat-label">Prezzo di partenza</div></div>
-      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Watermark o vincoli</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Made in Italy</div></div>
-    </div>
-  </div>
+<section id="hero" class="hero">
+    <h1>Welcome to Rete Magna</h1>
+    <p>Here are some stats...</p>
+    <button onclick="document.getElementById('contactForm').style.display='block'">Contact Us</button>
 </section>
 
-<!-- CHI SIAMO -->
-<section id="chi-siamo">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image-wrap reveal">
-        <div class="about-image-box">
-          <div class="founder-visual">
-            <div class="founder-initials">RM</div>
-            <div class="founder-name">Fondatore Rete Magna</div>
-            <div class="founder-role">Digital Entrepreneur · Veneto, Italia</div>
-          </div>
-        </div>
-        <div class="about-badge">
-          <small>Fondato nel</small>2024
-        </div>
-      </div>
-      <div class="about-text reveal">
-        <div class="section-tag">Chi siamo</div>
-        <h2 class="section-title">Da Zero a Business Digitale: la Mia Storia</h2>
-        <p>Ho avviato Rete Magna con una convinzione semplice: ogni piccola impresa italiana merita un sito web professionale, senza spendere migliaia di euro o aspettare mesi.</p>
-        <p>Partendo dal Veneto, ho imparato a costruire siti potenti con Framer, Webflow e Carrd. Ho testato strategie social su TikTok e Instagram, automazioni AI per il marketing, e funnel di vendita che generano clienti h24.</p>
-        <p>Oggi aiuto PMI e startup a fare lo stesso — veloce, accessibile, misurabile.</p>
-        <div class="about-values">
-          <div class="about-value">
-            <div class="about-value-icon">⚡</div>
-            <div class="about-value-text"><strong>Velocità senza compromessi</strong>Consegniamo siti funzionanti in 7 giorni, con revisioni incluse.</div>
-          </div>
-          <div class="about-value">
-            <div class="about-value-icon">🎯</div>
-            <div class="about-value-text"><strong>Focus sui risultati</strong>Ogni elemento è pensato per convertire visitatori in clienti.</div>
-          </div>
-          <div class="about-value">
-            <div class="about-value-icon">🤝</div>
-            <div class="about-value-text"><strong>Partnership a lungo termine</strong>Non vendiamo siti, costruiamo business digitali scalabili.</div>
-          </div>
-        </div>
-      </div>
+<section id="about">
+    <h2>About Us</h2>
+    <div class="founder-card">
+        <h3>Founder Name</h3>
+        <p>About the founder...</p>
     </div>
-  </div>
 </section>
 
-<!-- SERVIZI -->
-<section id="servizi" class="section-alt">
-  <div class="container">
-    <div class="services-intro reveal">
-      <div>
-        <div class="section-tag">Servizi &amp; Prezzi</div>
-        <h2 class="section-title">Pacchetti per Ogni Fase del Tuo Business</h2>
-      </div>
-      <p class="section-sub">Soluzioni scalabili per chi parte da zero e per chi vuole crescere. Nessun abbonamento nascosto.</p>
-    </div>
-    <div class="reveal">
-      <div style="overflow-x:auto; border-radius: 12px; border: 1px solid var(--border);">
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Pacchetto</th>
-              <th>Prezzo</th>
-              <th>Cosa include</th>
-              <th>Tempi</th>
-              <th>Ideale per</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="pkg-name">Starter</span></td>
-              <td><span class="pkg-price">500€</span></td>
-              <td class="pkg-features"><span class="check">✓</span> Landing page 1 sezione<br><span class="check">✓</span> Form contatto<br><span class="check">✓</span> SEO base<br><span class="check">✓</span> Mobile-first</td>
-              <td><span style="color:var(--green-accent);font-weight:600;">3 giorni</span></td>
-              <td style="color:var(--text-mid);font-size:0.85rem;">Freelance &amp; professionisti</td>
-            </tr>
-            <tr>
-              <td><span class="pkg-name">Business</span></td>
-              <td><span class="pkg-price">1.200€</span></td>
-              <td class="pkg-features"><span class="check">✓</span> Sito multi-pagina<br><span class="check">✓</span> Blog integrato<br><span class="check">✓</span> Analytics avanzati<br><span class="check">✓</span> Automazione email</td>
-              <td><span style="color:var(--green-accent);font-weight:600;">7 giorni</span></td>
-              <td style="color:var(--text-mid);font-size:0.85rem;">PMI e aziende locali</td>
-            </tr>
-            <tr class="featured">
-              <td><span class="pkg-name">E-Commerce Pro<span class="pkg-badge">POPOLARE</span></span></td>
-              <td><span class="pkg-price">2.500€</span></td>
-              <td class="pkg-features"><span class="check">✓</span> Shop completo<br><span class="check">✓</span> Integrazione Stripe/PayPal<br><span class="check">✓</span> Funnel TikTok/Instagram<br><span class="check">✓</span> Script contenuti AI</td>
-              <td><span style="color:var(--green-accent);font-weight:600;">10 giorni</span></td>
-              <td style="color:var(--text-mid);font-size:0.85rem;">Brand e-commerce in crescita</td>
-            </tr>
-            <tr>
-              <td><span class="pkg-name">B2B Scalabile</span></td>
-              <td><span class="pkg-price">Su misura</span></td>
-              <td class="pkg-features"><span class="check">✓</span> Strategia digitale completa<br><span class="check">✓</span> Automazione AI marketing<br><span class="check">✓</span> Social management<br><span class="check">✓</span> Supporto continuativo</td>
-              <td><span style="color:var(--green-accent);font-weight:600;">Ongoing</span></td>
-              <td style="color:var(--text-mid);font-size:0.85rem;">Startup e aziende ambiziose</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="text-align:center;margin-top:1.5rem;">
-        <a href="#contatto" class="btn-primary" onclick="event.preventDefault();openModal()">Richiedi un preventivo gratuito →</a>
-      </p>
-    </div>
-  </div>
+<section id="services">
+    <h2>Our Services</h2>
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Service 1</td>
+            <td>$100</td>
+        </tr>
+        <tr>
+            <td>Service 2</td>
+            <td>$200</td>
+        </tr>
+    </table>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
-  <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:0;">
-      <div class="section-tag" style="text-align:center;">Portfolio</div>
-      <h2 class="section-title" style="text-align:center;">Lavori Recenti</h2>
-      <p class="section-sub" style="margin:0 auto;">Ecco alcuni esempi di siti e strategie digitali realizzate per i nostri clienti.</p>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card reveal">
-        <div class="portfolio-mockup pm-1">
-          <div class="mockup-screen">
-            <div class="ms-bar accent"></div>
-            <div class="ms-bar" style="width:45%"></div>
-            <div class="ms-row"><div class="ms-block accent"></div><div class="ms-block" style="flex:1.5"></div></div>
-            <div class="ms-bar mid"></div>
-            <div class="ms-bar" style="width:50%"></div>
-            <div class="ms-row"><div class="ms-block green" style="flex:0.6;height:20px"></div></div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-cat">E-Commerce</div>
-          <div class="portfolio-title">LuminaStore – Beauty &amp; Cura</div>
-          <div class="portfolio-desc">Shop online su Webflow con checkout ottimizzato e funnel Instagram. +340% conversioni nel primo mese.</div>
-          <div class="portfolio-tags">
-            <span class="tag">Webflow</span><span class="tag">Stripe</span><span class="tag">Instagram Ads</span>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-card reveal">
-        <div class="portfolio-mockup pm-2">
-          <div class="mockup-screen">
-            <div class="ms-bar" style="background:var(--green-accent);width:55%"></div>
-            <div class="ms-bar" style="width:70%"></div>
-            <div class="ms-row"><div class="ms-block" style="background:linear-gradient(90deg,#0D3B2E,#00C896)"></div></div>
-            <div class="ms-bar mid"></div>
-            <div class="ms-bar" style="width:40%"></div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-cat">Landing Page + Funnel</div>
-          <div class="portfolio-title">FitForce Academy – Corsi Online</div>
-          <div class="portfolio-desc">Landing page su Framer con video-hero e funnel automatizzato via email. 1.200 iscritti in 30 giorni.</div>
-          <div class="portfolio-tags">
-            <span class="tag">Framer</span><span class="tag">Brevo</span><span class="tag">TikTok</span>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-card reveal">
-        <div class="portfolio-mockup pm-3">
-          <div class="mockup-screen">
-            <div class="ms-bar" style="background:#7B4FD8;width:60%"></div>
-            <div class="ms-bar mid"></div>
-            <div class="ms-row">
-              <div class="ms-block" style="background:linear-gradient(90deg,#2D1A4A,#7B4FD8)"></div>
-              <div class="ms-block" style="background:linear-gradient(90deg,#2D1A4A,#7B4FD8)"></div>
-            </div>
-            <div class="ms-bar" style="width:50%"></div>
-          </div>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-cat">Sito Aziendale</div>
-          <div class="portfolio-title">StudioLex – Studio Legale</div>
-          <div class="portfolio-desc">Sito istituzionale su Carrd con form appuntamenti integrato e SEO locale ottimizzata. Prima pagina Google in 45 giorni.</div>
-          <div class="portfolio-tags">
-            <span class="tag">Carrd</span><span class="tag">SEO</span><span class="tag">Calendly</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COME FUNZIONA -->
-<section id="come-funziona" class="section-alt">
-  <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <div class="section-tag" style="text-align:center;">Il nostro processo</div>
-      <h2 class="section-title" style="text-align:center;">Dal Primo Contatto al Sito Online</h2>
-      <p class="section-sub" style="margin:0 auto;">Un processo trasparente e collaudato. Sai sempre a che punto siamo.</p>
-    </div>
-    <div class="steps-grid reveal">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <div class="step-title">Consulenza gratuita</div>
-        <div class="step-desc">Capiamo il tuo business, i tuoi obiettivi e il tuo pubblico in una chiamata di 30 minuti.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <div class="step-title">Strategia su misura</div>
-        <div class="step-desc">Proponiamo il pacchetto più adatto con wireframe e scelta dei tool no-code.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <div class="step-title">Design &amp; sviluppo</div>
-        <div class="step-desc">Costruiamo il tuo sito in tempo record. Revisioni incluse, sempre in contatto con te.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">4</div>
-        <div class="step-title">Lancio &amp; integrazione</div>
-        <div class="step-desc">Pubblichiamo, integriamo i social e configuriamo le automazioni AI per il marketing.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">5</div>
-        <div class="step-title">Crescita continua</div>
-        <div class="step-desc">Monitoriamo le performance e ottimizziamo la tua strategia ogni mese.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIANZE -->
-<section id="testimonianze">
-  <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <div class="section-tag" style="text-align:center;">Testimonianze</div>
-      <h2 class="section-title" style="text-align:center;">Cosa Dicono i Nostri Clienti</h2>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"Non credevo si potesse avere un e-commerce così professionale a 2.500€. Il sito è live da 3 mesi e ho già recuperato 10 volte l'investimento grazie al funnel TikTok che hanno configurato."</div>
-        <div class="reviewer">
-          <div class="reviewer-avatar av-1">SC</div>
-          <div>
-            <div class="reviewer-name">Sara Conti</div>
-            <div class="reviewer-role">Fondatrice, LuminaStore · Treviso</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"In 7 giorni avevo il mio sito online, ottimizzato per Google e con un form appuntamenti funzionante. La qualità è paragonabile ad agenzie che chiedono 5.000€. Highly recommended."</div>
-        <div class="reviewer">
-          <div class="reviewer-avatar av-2">MF</div>
-          <div>
-            <div class="reviewer-name">Marco Ferretti</div>
-            <div class="reviewer-role">Avvocato, StudioLex · Venezia</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"Avevo zero presenza online. Ora con la landing page e la strategia Instagram ho 1.400 iscritti alla mia academy. Rete Magna non vende siti, vende risultati concreti."</div>
-        <div class="reviewer">
-          <div class="reviewer-avatar av-3">LB</div>
-          <div>
-            <div class="reviewer-name">Luca Bianchi</div>
-            <div class="reviewer-role">Personal Trainer, FitForce · Padova</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"Il pacchetto B2B che abbiamo preso include anche la gestione social e le automazioni AI per le email. Risparmiamo 15 ore a settimana di lavoro manuale. Investimento assolutamente ripagato."</div>
-        <div class="reviewer">
-          <div class="reviewer-avatar av-4">GR</div>
-          <div>
-            <div class="reviewer-name">Giulia Romano</div>
-            <div class="reviewer-role">CEO, StartupHub · Milano</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG -->
-<section id="blog" class="section-alt">
-  <div class="container">
-    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:0;">
-      <div>
-        <div class="section-tag">Blog &amp; Guide</div>
-        <h2 class="section-title">Strategie per Massimizzare i Profitti Online</h2>
-      </div>
-      <a href="#blog" style="color:var(--blue-accent);font-weight:600;font-size:0.9rem;text-decoration:none;" onclick="alert('Blog in arrivo! Seguici su Instagram @rete_magna per i contenuti.')">Vedi tutte le guide →</a>
-    </div>
-    <div class="blog-grid reveal">
-      <div class="blog-card">
-        <div class="blog-thumb bt-1">
-          <div class="blog-thumb-inner">
-            <div class="blog-thumb-text">Massimizza Profitti con Social No-Code</div>
-          </div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">Guida Completa</div>
-          <div class="blog-title">Come trasformare TikTok e Instagram in macchine da vendita senza spendere in advertising</div>
-          <div class="blog-desc">Scopri i 7 principi fondamentali per creare contenuti organici che convertono, integrare un funnel no-code e automatizzare le risposte ai DM con AI. Strategia testata su 12 clienti italiani.</div>
-          <div class="blog-meta">15 Aprile 2025 · 8 min di lettura</div>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-thumb bt-2">
-          <div class="blog-thumb-inner">
-            <div class="blog-thumb-text">Framer vs Webflow</div>
-          </div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">No-Code</div>
-          <div class="blog-title">Framer o Webflow: quale scegliere per il tuo business nel 2025?</div>
-          <div class="blog-desc">Confronto dettagliato tra i due migliori tool no-code per siti professionali. Prezzi, curva di apprendimento, integrazioni AI e casi d'uso reali.</div>
-          <div class="blog-meta">2 Aprile 2025 · 6 min di lettura</div>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-thumb bt-3">
-          <div class="blog-thumb-inner">
-            <div class="blog-thumb-text">AI per Marketing</div>
-          </div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">Automazione AI</div>
-          <div class="blog-title">5 automazioni AI che ogni startup italiana dovrebbe usare subito</div>
-          <div class="blog-desc">Email marketing automatico, script per video TikTok, risposta ai commenti Instagram, analisi competitor e generazione landing page. Tutti tool gratuiti o low-cost.</div>
-          <div class="blog-meta">20 Marzo 2025 · 5 min di lettura</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="cta-section" id="contatto">
-  <div class="container">
-    <h2>Pronto a Lanciare il Tuo Business?</h2>
-    <p>Consulenza gratuita di 30 minuti. Nessun impegno, zero pressioni.</p>
-    <div class="cta-form" id="ctaForm">
-      <input type="email" class="cta-input" id="ctaEmail" placeholder="La tua email aziendale..." required>
-      <button class="cta-submit" onclick="handleCtaSubmit()">Inizia Gratis →</button>
-    </div>
-    <div class="form-note">Risposta entro 24h · Privacy garantita · Nessun spam</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
+    <h2>Our Portfolio</h2>
     <div>
-      <div class="footer-logo">Rete<span>Magna</span></div>
-      <p class="footer-about">Agenzia no-code e AI nel Veneto. Aiutiamo PMI e startup italiane a costruire business digitali professionali, veloci e scalabili.</p>
-      <div class="footer-socials">
-        <a href="https://www.tiktok.com/@retemagna" class="social-btn" target="_blank" aria-label="TikTok">TK</a>
-        <a href="https://instagram.com/rete_magna" class="social-btn" target="_blank" aria-label="Instagram">IG</a>
-        <a href="https://www.linkedin.com/in/adam-undefined-342389396" class="social-btn" target="_blank" aria-label="LinkedIn">LI</a>
-        <a href="https://wa.me/393801318087" class="social-btn" target="_blank" aria-label="WhatsApp">WA</a>
-      </div>
+        <div>Project 1</div>
+        <div>Project 2</div>
+        <div>Project 3</div>
     </div>
-    <div class="footer-col">
-      <h4>Servizi</h4>
-      <ul>
-        <li><a href="#servizi">Siti No-Code</a></li>
-        <li><a href="#servizi">E-Commerce</a></li>
-        <li><a href="#servizi">Automazione AI</a></li>
-        <li><a href="#servizi">Strategia Social</a></li>
-        <li><a href="#servizi">Pacchetti B2B</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Azienda</h4>
-      <ul>
-        <li><a href="#chi-siamo">Chi siamo</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#testimonianze">Recensioni</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contatto" onclick="event.preventDefault();openModal()">Contattaci</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contatti</h4>
-      <div class="contact-item">
-        <span class="ci-icon">✉</span>
-        <a href="mailto:richsomeday06@gmail.com">richsomeday06@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <span class="ci-icon">📱</span>
-        <a href="https://wa.me/393801318087" target="_blank">WhatsApp Business</a>
-      </div>
-      <div class="contact-item">
-        <span class="ci-icon">📍</span>
-        <span>Veneto, Italia</span>
-      </div>
-      <div class="contact-item">
-        <span class="ci-icon">🎵</span>
-        <a href="https://www.tiktok.com/@retemagna" target="_blank">@reteMagna su TikTok</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 Rete Magna. Tutti i diritti riservati.</span>
-    <div class="footer-legal">
-      <a href="#" onclick="event.preventDefault();alert('Privacy Policy in fase di pubblicazione.')">Privacy Policy</a>
-      <a href="#" onclick="event.preventDefault();alert('Cookie Policy in fase di pubblicazione.')">Cookie Policy</a>
-      <a href="#" onclick="event.preventDefault();alert('Termini di servizio in fase di pubblicazione.')">Termini di servizio</a>
-    </div>
-  </div>
-</footer>
+</section>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()" aria-label="Chiudi">✕</button>
-    <div id="modalContent">
-      <h3>Consulenza Gratuita</h3>
-      <p class="modal-sub">Compila il modulo — ti rispondo entro 24 ore per fissare una call di 30 minuti.</p>
-      <div class="form-group">
-        <label>Nome e Cognome *</label>
-        <input type="text" id="fName" placeholder="Mario Rossi">
-      </div>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" id="fEmail" placeholder="mario@azienda.it">
-      </div>
-      <div class="form-group">
-        <label>Di cosa hai bisogno?</label>
-        <select id="fService">
-          <option value="">Seleziona un servizio...</option>
-          <option>Sito web professionale</option>
-          <option>E-Commerce</option>
-          <option>Landing page / Funnel</option>
-          <option>Automazione AI &amp; Marketing</option>
-          <option>Strategia Social (TikTok/IG)</option>
-          <option>Pacchetto B2B</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Messaggio (opzionale)</label>
-        <textarea id="fMsg" rows="3" placeholder="Descrivi brevemente il tuo progetto..."></textarea>
-      </div>
-      <button class="form-submit" onclick="submitForm()">Invia Richiesta →</button>
+<section id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div>
+        <p>Testimonial 1...</p>
+        <p>Testimonial 2...</p>
     </div>
-  </div>
+</section>
+
+<section id="blog">
+    <h2>Latest Blogs</h2>
+    <div>
+        <p>Blog Preview 1...</p>
+        <p>Blog Preview 2...</p>
+    </div>
+</section>
+
+<div id="contactForm" style="display:none;">
+    <h2>Contact Form</h2>
+    <form onsubmit="sendEmail(); return false;">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
 </div>
 
 <script>
-  function openModal() {
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeModalOnBg(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-  });
+    (function(){
+        emailjs.init('YOUR_USER_ID');
+    })();
 
-  function submitForm() {
-    const name = document.getElementById('fName').value.trim();
-    const email = document.getElementById('fEmail').value.trim();
-    const service = document.getElementById('fService').value;
-    const msg = document.getElementById('fMsg').value.trim();
-    if (!name || !email) { alert('Per favore compila nome ed email.'); return; }
-    const subject = encodeURIComponent('Richiesta consulenza – ' + (service || 'Rete Magna'));
-    const body = encodeURIComponent(
-      'Nome: ' + name + '\nEmail: ' + email +
-      '\nServizio: ' + (service || 'Non specificato') +
-      '\n\nMessaggio:\n' + (msg || '–')
-    );
-    window.location.href = 'mailto:richsomeday06@gmail.com?subject=' + subject + '&body=' + body;
-    document.getElementById('modalContent').innerHTML = `
-      <div class="form-success">
-        <div class="success-icon">🎉</div>
-        <h4>Quasi fatto, ${name.split(' ')[0]}!</h4>
-        <p>Si sta aprendo la tua app email con il messaggio precompilato. Invialo per completare la richiesta!</p>
-      </div>`;
-    setTimeout(closeModal, 4000);
-  }
-
-  function handleCtaSubmit() {
-    const email = document.getElementById('ctaEmail').value.trim();
-    if (!email || !email.includes('@')) { alert('Inserisci un indirizzo email valido.'); return; }
-    document.getElementById('fEmail').value = email;
-    openModal();
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    function sendEmail() {
+        const contactForm = document.forms[0];
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            name: contactForm.name.value,
+            email: contactForm.email.value,
+            message: contactForm.message.value
+        }).then(function(){
+            alert('Email sent successfully!');
+        }, function(error){
+            alert('Failed to send email: ' + JSON.stringify(error));
+        });
+    }
 </script>
+
+<footer>
+    <p>&copy; 2026 Rete Magna. Follow us on</p>
+    <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+    </ul>
+</footer>
+
 </body>
 </html>
